@@ -281,7 +281,7 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
 
             long diffInMs = lastDate.getTime() - now.getTime();
             long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
-            if (diffInSec <= (0 - seconds_before_detection) && list.get(0).appearance.getGender() != Face.GENDER.UNKNOWN) {
+            if (diffInSec <= (0 - seconds_before_detection) && list.get(0).appearance.getGender() != Face.GENDER.UNKNOWN && list.get(0).appearance.getAge() != Face.AGE.AGE_UNKNOWN ) {
                 boolean done = false;
 
                 Log.d(LOG_TAG, "Je tente une reconnaissance" + diffInSec);
@@ -305,7 +305,6 @@ public class MainActivity extends Activity implements Detector.ImageListener, Ca
                             setKenBurnsView("femme");
                             break;
                     }
-
                 }
 
                 Bitmap faceBitmap = ImageHelper.getBitmapFromFrame(frame);

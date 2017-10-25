@@ -36,13 +36,12 @@ public class CustomDialog {
 
         TextView title_text = (TextView) dialog.findViewById(R.id.d0_title);
         String title="Bonjour !\n\n" +
-                "Je m'appelle ???, je suis un IA \n" +
+                "Je m'appelle Jarvis, je suis une IA \n" +
                 "Je m'entraine à trouver le meilleur \n" +
-                "contenu pour vous, celui qui peut\n" +
-                "le plus vous intéresser !\n\n" +
-                "Cliquez, puis mettez au centre de la\n" +
+                "contenu pour vous !\n\n" +
+                "Cliquez, puis filmez-vous avec la\n" +
                 "caméra en haut à droite\n" +
-                "et je vous montre\n";
+                "et je vous montre mes talents\n";
         title_text.setText(title);
 
         MaterialFancyButton btnQuit = (MaterialFancyButton) dialog.findViewById(R.id.d0_btn_quit);
@@ -221,7 +220,8 @@ public class CustomDialog {
         title_text.setText(title);
 
         TextView title_content = (TextView) dialog.findViewById(R.id.d456_content);
-        String content="Merci d'avoir participé, je m'améliore grâce à vous\n Vous voulez-vous savoir comment A2Display et moi faisons ?";
+        String content="Un point de plus pour moi, Merci !\n" +
+                "Vous voulez savoir comment je fais ?";
         title_content.setText(content);
 
         ImageView smiley=(ImageView)dialog.findViewById(R.id.d456_smiley);
@@ -250,7 +250,11 @@ public class CustomDialog {
         title_text.setText(title);
 
         TextView title_content = (TextView) dialog.findViewById(R.id.d456_content);
-        String content="Merci d'avoir participé, je m'améliore grâce à vous\n Vous voulez-vous savoir comment A2Display et moi faisons ?";
+        String content="Ça m'arrive de faire des erreurs, je m'améliore de jour en jour !\n" +
+                "Vous voulez savoir comment je fais ?";
+        if(face.qualities.getBrightness()<30 || face.qualities.getBrightness()>30){
+            content+="\nJ'ai détecté un petit soucis de lumière, j'y arriverai peut-être si je vous vois mieux ?";
+        }
         title_content.setText(content);
 
         ImageView smiley=(ImageView)dialog.findViewById(R.id.d456_smiley);
@@ -279,7 +283,11 @@ public class CustomDialog {
         title_text.setText(title);
 
         TextView title_content = (TextView) dialog.findViewById(R.id.d456_content);
-        String content="Merci d'avoir participé, je m'améliore grâce à vous\n Vous voulez-vous savoir comment A2Display et moi faisons ?";
+        String content="Désolé de cette erreur... Promis j'essaierai de faire mieux !\n" +
+                "Vous voulez savoir comment je fais ?";
+        if(face.qualities.getBrightness()<30 || face.qualities.getBrightness()>30){
+            content+="\nJ'ai détecté un petit soucis de lumière, j'y arriverai peut-être si je vous vois mieux ?";
+        }
         title_content.setText(content);
 
         ImageView smiley=(ImageView)dialog.findViewById(R.id.d456_smiley);
@@ -295,7 +303,10 @@ public class CustomDialog {
         dialog.setContentView(R.layout.dialog_7);
 
         TextView title_text = (TextView) dialog.findViewById(R.id.d7_title);
-        String title="blabnla sur comment avec en explication Innovation";
+        String title="Je travaille avec les dernières technologie de reconnaissance visuelle afin d'être le plus pertinent possible." +
+                "\n\nPour des raisons d'anonymat, je ne garde aucune donnée ! \n\nJ'essaie simplement de m'améliorer afin " +
+                "d'apporter la meilleure expérience possible." +
+                "\n\nJ'ai été développé par A2Display, Jeune Entreprise Innovante et French Tech avec l'aide du Laboratoire d'IA sur Angers";
         title_text.setText(title);
 
         MaterialFancyButton btnNext = (MaterialFancyButton) dialog.findViewById(R.id.d7_btn_next);
@@ -317,10 +328,90 @@ public class CustomDialog {
         dialog.setContentView(R.layout.dialog_8);
 
         TextView title_text = (TextView) dialog.findViewById(R.id.d8_title);
-        String title="Autre blabla sur ce sur quoi ça peut servir !";
+        String title="Pourquoi m'utiliser ? C'est très simple !\n\n" +
+                "Je sais trier les informations à envoyer aux gens, par exemple privilégier les informations locales\n\n" +
+                "Je simplifie beaucoup le travail en amont, vous me donnez les documents et je vous aide " +
+                "à les afficher correctement aux personnes qui sont intéressées\n\n" +
+                "Bref, je suis la nouvelle génération intelligente d'affichage pour communiquer et proposer de l'information pertinente";
         title_text.setText(title);
 
         MaterialFancyButton btnQuit = (MaterialFancyButton) dialog.findViewById(R.id.d8_btn_quit);
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelDialog();
+                dialog9();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void dialog9(){
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_9);
+
+        TextView title_text = (TextView) dialog.findViewById(R.id.d9_title);
+        String title="Je me joins à l'équipe A2Display pour vous remercier de votre participation à cette nouvelle expérience technologique !\n\n" +
+                "J'espère qu'elle vous a permis d'entrevoir les nouvelles possibilités que j'offre, même si j'ai gardé quelques secrets en réserve\n\n";
+        if(face.appearance.getGlasses()==Face.GLASSES.YES){
+            title+="(Par exemple je sais que vous avez des lunettes,";
+        }
+        else{
+            title+="(Par exemple je sais que vous n'avez pas de lunette,";
+        }
+        title+=" que vous l'emoji le plus proche de vous est ";
+        switch(face.emojis.getDominantEmoji()){
+            case DISAPPOINTED:
+                title+="'Déçu'";
+                break;
+            case FLUSHED:
+                title+="'Timide'";
+                break;
+            case KISSING:
+                title+="'Bisous'";
+                break;
+            case LAUGHING:
+                title+="'Rire'";
+                break;
+            case RAGE:
+                title+="'Colère'";
+                break;
+            case RELAXED:
+                title+="'Relaxé'";
+                break;
+            case SCREAM:
+                title+="'Cri'";
+                break;
+            case SMILEY:
+                title+="'Sourire'";
+                break;
+            case SMIRK:
+                title+="'Beurk !'";
+                break;
+            case STUCK_OUT_TONGUE:
+                title+="'Tire la langue'";
+                break;
+            case STUCK_OUT_TONGUE_WINKING_EYE:
+                title+="'Tire la langue'";
+                break;
+            case WINK:
+                title+="'Clin d'oeil'";
+                break;
+            case UNKNOWN:
+                title+="'Normal'";
+                break;
+        }
+
+
+
+        title+=")\n\nVous voulez en savoir plus ? Un mail a retenir : contact@a2display.fr\n\n" +
+                "Merci aux Vitrines d'Angers, grâce à eux je vous offre du contenu personnalisé";
+        title_text.setText(title);
+
+        MaterialFancyButton btnQuit = (MaterialFancyButton) dialog.findViewById(R.id.d9_btn_quit);
         btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

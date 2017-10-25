@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/d8_title"
+        android:id="@+id/d9_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
@@ -24,11 +24,11 @@
         android:layout_weight="1">
 
         <com.rilixtech.materialfancybutton.MaterialFancyButton
-            android:id="@+id/d8_btn_quit"
+            android:id="@+id/d9_btn_quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Merci !"
+            android:text="Revenir"
             app:mfb_icon="@string/ioni_checkmark_round">
 
         </com.rilixtech.materialfancybutton.MaterialFancyButton>
